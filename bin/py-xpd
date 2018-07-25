@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import sys, os
+
+INSTALLED = "@INSTALLDIR@"
+
+if INSTALLED.startswith("@"):
+    path = os.path.dirname(os.path.abspath(sys.argv[0]))
+    path = os.path.abspath(os.path.join(path, "..", "src"))
+else:
+    path = INSTALLED
+
+sys.path = [path] + sys.path
+
+from py_xpd import main
+main.run()
