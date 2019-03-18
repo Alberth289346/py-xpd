@@ -504,7 +504,11 @@ def match_sequence(stream):
             assert False, "Weird state class {}".format(repr(cur_state))
 
     # Verify we're at the end of the stream.
-    next(stream)
+    try:
+        next(stream)
+    except StopIteration:
+        return
+
     assert False, "Sequence detection ended too early!"
 # }}}
 
